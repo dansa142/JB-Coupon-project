@@ -1,0 +1,96 @@
+<h1>welcome admin</h1>
+<mat-form-field appearance="fill" class="selector">
+  <mat-label>what are we doing</mat-label>
+  <mat-select [(value)]="selected">
+    <mat-option [routerLink]="['/admin']"></mat-option>
+    <mat-option value="add company" [routerLink]="['/addCompany']">add company</mat-option>
+    <mat-option value="get one company" [routerLink]="['/getOneCompany']">get one company</mat-option>
+    <mat-option value="get all companies" [routerLink]="['/getAllCompanies']">get all companies</mat-option>
+    <mat-option value="add customer" [routerLink]="['/addCustomer']">add customer</mat-option>
+    <mat-option value="get one customer" [routerLink]="['/getOneCustomer']">get one customer</mat-option>
+    <mat-option value="get all customers" [routerLink]="['/getAllCustomers']">get all customers</mat-option>
+    <mat-option value="get all coupons" [routerLink]="['/getAllCoupons']">get all coupons</mat-option>
+
+  </mat-select>
+</mat-form-field>
+
+
+<br><br><br><br>
+
+
+
+<div *ngIf="showImage == true" class="model">
+  <button mat-button class="close" (click)="closeImage()">&times;</button>
+  <img src="../../../../../assets/images/{{image}}" class="image">
+</div>
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="showTable == true" class="tableDiv">
+  <table mat-table [dataSource]="couponDataSource" class="couponTable">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> title </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> category </th>
+      <td mat-cell *matCellDef="let element"> {{element.catagory}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef> amount </th>
+      <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> price </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef> start date </th>
+      <td mat-cell *matCellDef="let element"> {{element.startDate | date:'dd-MMMM-yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="endDate">
+      <th mat-header-cell *matHeaderCellDef> end date </th>
+      <td mat-cell *matCellDef="let element"> {{element.endDate | date:'dd-MMMM-yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element"><button mat-flat-button color="primary"
+          (click)="getImage(element.image)">show image</button></td>
+    </ng-container>
+
+    <ng-container matColumnDef="commands">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="warn" class="commands" class="tableButton"
+          (click)="deleteCoup(element)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="couponDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: couponDisplayedColumns;"></tr>
+  </table>
+</div>

@@ -1,0 +1,11 @@
+<h1>Welcome {{company.name}} </h1>
+
+<mat-form-field appearance="fill" class="selector">
+  <mat-label>what are we doing</mat-label>
+  <mat-select [(value)]="selected">
+
+    <mat-option value="company details" [routerLink]="['/companyDetails']">company details</mat-option>
+    <mat-option value="coupons" [routerLink]="['/coupons']">coupons</mat-option>
+
+  </mat-select>
+</mat-form-field>

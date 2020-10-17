@@ -1,0 +1,65 @@
+<h1>welcome admin</h1>
+<mat-form-field appearance="fill" class="selector">
+  <mat-label>what are we doing</mat-label>
+  <mat-select [(value)]="selected">
+    <mat-option [routerLink]="['/admin']"></mat-option>
+    <mat-option value="add company" [routerLink]="['/addCompany']">add company</mat-option>
+    <mat-option value="get one company" [routerLink]="['/getOneCompany']">get one company</mat-option>
+    <mat-option value="get all companies" [routerLink]="['/getAllCompanies']">get all companies</mat-option>
+    <mat-option value="add customer" [routerLink]="['/addCustomer']">add customer</mat-option>
+    <mat-option value="get one customer" [routerLink]="['/getOneCustomer']">get one customer</mat-option>
+    <mat-option value="get all customers" [routerLink]="['/getAllCustomers']">get all customers</mat-option>
+    <mat-option value="get all coupons" [routerLink]="['/getAllCoupons']">get all coupons</mat-option>
+
+  </mat-select>
+</mat-form-field>
+
+<div class="container">
+
+
+  <mat-form-field appearance="fill" class="input">
+    <mat-label>First Name</mat-label>
+    <input matInput [formControl]="customerForm.get('firstName')">
+    <mat-error *ngIf="customerForm.get('firstName').hasError('required')">
+      <strong>please enter first name</strong>
+    </mat-error>
+  </mat-form-field><br>
+
+  <mat-form-field appearance="fill" class="input">
+    <mat-label>Last Name</mat-label>
+    <input matInput [formControl]="customerForm.get('lastName')">
+    <mat-error *ngIf="customerForm.get('lastName').hasError('required')">
+      <strong>please enter last name</strong>
+    </mat-error>
+  </mat-form-field><br>
+
+  <mat-form-field appearance="fill" class="input">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="pat@example.com" [formControl]="customerForm.get('email')">
+    <mat-error *ngIf="customerForm.get('email') .hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="customerForm.get('email') .hasError('email')">
+      Not a <strong>Valid Email</strong>
+    </mat-error>
+  </mat-form-field><br>
+
+  <mat-form-field appearance="fill" class="input">
+    <mat-label>Password</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="customerForm.get('password')">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="customerForm.get('password').hasError('minlength') ">
+      password must contain <strong>8 characters</strong>
+    </mat-error>
+    <mat-error *ngIf="customerForm.get('password').hasError('required')">
+      password is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <button [disabled]="customerForm.invalid" mat-raised-button color="primary" class="addButton"
+    (click)="addCustomer()">add customer</button>
+
+
+</div>

@@ -1,0 +1,96 @@
+.example-card {
+  max-width: 150px;
+  background-color: lightskyblue;
+  display: inline-block;
+  margin: 25px 50px;
+  float: left;
+}
+
+.controlPanel {
+  width: 100%;
+  height: 40px;
+  margin-top: 10px;
+}
+
+h1 {
+  float: left;
+  margin-left: 50px;
+}
+
+.sortFields {
+  float: left;
+  margin-left: 25px;
+}
+
+.sortButton {
+  float: left;
+  margin-top: 15px;
+  background-color: whitesmoke;
+  color: blue;
+  font-weight: bold;
+}
+
+.controlButtons {
+  float: right;
+  margin-right: 25px;
+}
+
+.showAllPanel {
+  height: 26%;
+  margin-top: 20px;
+  margin-left: 50px;
+  overflow: hidden;
+}
+
+.showAllCats {
+  float: left;
+  font-size: x-large;
+  color: rgb(31, 28, 209);
+}
+
+.showAllThumbs {
+  height: 75px;
+  width: 100px;
+  margin-right: 25px;
+  background-color: lightskyblue;
+  display: inline-block;
+}
+
+.showAllThumbTitle {
+  font-size: medium;
+  float: left;
+  color: aliceblue;
+}
+
+.showCategory {
+  display: inline-block;
+  width: fit-content;
+  overflow: auto;
+}
+
+.showCatImage {
+  max-height: 200px;
+  max-width: 175px;
+}
+
+.myCoupons {
+  display: inline-block;
+  margin-top: 25px;
+}
+
+.myCouponsThumbs {
+  display: inline-block;
+  width: fit-content;
+  overflow: auto;
+}
+
+.catFilter {
+  display: inline-block;
+  margin-top: 25px;
+}
+
+.catFilterThumbs {
+  display: inline-block;
+  width: fit-content;
+  overflow: auto;
+}

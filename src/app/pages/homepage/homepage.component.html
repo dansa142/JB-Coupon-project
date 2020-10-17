@@ -1,0 +1,24 @@
+<div *ngIf="secureService.isLogged == false">
+  <h1>please login or sign up to start saving</h1>
+</div>
+
+<span class="coupons">
+  <div *ngFor="let coupon of allCoupons" class="couponsThumbs">
+    <mat-card class="example-card">
+      <mat-card-header style="max-height: 50px;">
+        <mat-card-title>{{coupon.title}}</mat-card-title>
+        <mat-card-subtitle>{{coupon.catagory}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="../../../assets/images/{{coupon.image}}" style="max-height: 200px; max-width: 175px;">
+      <mat-card-content style="float: left;">
+        <div style="overflow: auto;">
+          <p>
+            {{coupon.description}} <br>
+            price: {{coupon.price}} <br>
+            valid until: {{coupon.endDate | date:'MMMM/yy'}}
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</span>

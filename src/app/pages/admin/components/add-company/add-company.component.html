@@ -1,0 +1,56 @@
+<h1>welcome admin</h1>
+  <mat-form-field appearance="fill" class="selector">
+    <mat-label>what are we doing</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option [routerLink]="['/admin']"></mat-option>
+      <mat-option value="add company" [routerLink]="['/addCompany']">add company</mat-option>
+      <mat-option value="get one company" [routerLink]="['/getOneCompany']">get one company</mat-option>
+      <mat-option value="get all companies" [routerLink]="['/getAllCompanies']">get all companies</mat-option>
+      <mat-option value="add customer" [routerLink]="['/addCustomer']">add customer</mat-option>
+      <mat-option value="get one customer" [routerLink]="['/getOneCustomer']">get one customer</mat-option>
+      <mat-option value="get all customers" [routerLink]="['/getAllCustomers']">get all customers</mat-option>
+      <mat-option value="get all coupons" [routerLink]="['/getAllCoupons']">get all coupons</mat-option>
+
+    </mat-select>
+  </mat-form-field>
+
+
+  <div class="container">
+
+    <mat-form-field appearance="fill" class="input">
+      <mat-label>Company Name</mat-label>
+      <input matInput [formControl]="companyForm.get('name')">
+      <mat-error *ngIf="companyForm.get('name') .hasError('required')">
+        full name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field> <br>
+
+    <mat-form-field appearance="fill" class="input">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="pat@example.com" [formControl]="companyForm.get('email')">
+      <mat-error *ngIf="companyForm.get('email') .hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="companyForm.get('email') .hasError('email')">
+        Not a <strong>Valid Email</strong>
+      </mat-error>
+    </mat-form-field> <br>
+
+    <mat-form-field appearance="fill" class="input">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" [formControl]="companyForm.get('password')">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="companyForm.get('password').hasError('minlength') ">
+        password must contain <strong>8 characters</strong>
+      </mat-error>
+      <mat-error *ngIf="companyForm.get('password').hasError('required')">
+        password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <button [disabled]="companyForm.invalid" mat-raised-button color="primary" class="addButton" (click)="addComp()">add
+      company</button>
+
+  </div>

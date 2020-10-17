@@ -1,0 +1,34 @@
+.selector {
+  width: fit-content;
+  height: auto;
+  float: left;
+  position: relative;
+  padding-left: 50px;
+}
+
+mat-option {
+  background-color: lightgray;
+}
+
+.container {
+  position: relative;
+  margin-left: 10cm;
+  width: 50%;
+  text-align: start;
+}
+
+.input {
+  position: relative;
+  width: 250px;
+}
+
+.addButton {
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 17px;
+}
+
+h1 {
+  text-align: left;
+  margin-left: 50px;
+}

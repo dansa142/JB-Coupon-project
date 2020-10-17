@@ -1,0 +1,16 @@
+.selector {
+  width: fit-content;
+  height: auto;
+  float: left;
+  position: relative;
+  padding-left: 50px;
+}
+
+h1 {
+  text-align: left;
+  margin-left: 50px;
+}
+
+mat-option {
+  background-color: lightgray;
+}

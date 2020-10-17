@@ -1,0 +1,22 @@
+h1 {
+  padding-top: 15px;
+}
+
+.coupons {
+  display: inline-block;
+  margin-top: 25px;
+}
+
+.couponsThumbs {
+  display: inline-block;
+  width: fit-content;
+  overflow: auto;
+}
+
+.example-card {
+  max-width: 150px;
+  background-color: lightskyblue;
+  display: inline-block;
+  margin: 25px 50px;
+  float: left;
+}

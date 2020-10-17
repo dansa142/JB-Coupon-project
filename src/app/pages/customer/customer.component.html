@@ -1,0 +1,187 @@
+<div class="controlPanel">
+  <h1>hello {{customer.firstName}}</h1>
+
+  <span>
+    <mat-form-field *ngIf="showSort == true" appearance="fill" class="sortFields">
+      <mat-label>sort by category</mat-label>
+      <mat-select [formControl]="sortForm.get('category')">
+        <mat-option (click)="myCoupons()">all my coupons</mat-option>
+        <mat-option *ngFor="let element of catagoriesList" [value]="element" (click)="sortByCategory()">{{element}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </span>
+
+
+
+  <mat-form-field *ngIf="showSort == true" appearance="fill" class="sortFields">
+    <mat-label>sort by max price</mat-label>
+    <input matInput type="number" placeholder="enter price" [formControl]="sortForm.get('price')">
+    <span matPrefix>$&nbsp;</span>
+    <span matSuffix>.00</span>
+  </mat-form-field>
+  <button *ngIf="showSort == true" (click)="sortByPrice()" mat-raised-button color="primary"
+    class="sortButton">sort</button>
+
+
+
+  <button mat-stroked-button (click)="myCoupons()" class="controlButtons">
+    my coupons <mat-icon color="warn">favorite</mat-icon>
+  </button>
+  <button mat-icon-button (click)="backToAll()" class="controlButtons" style="color: black;">
+    <mat-icon>home</mat-icon>
+  </button>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span *ngIf="showAll == true">
+
+  <div *ngFor="let object of categoriesMap | keyvalue" class="showAllPanel">
+    <button mat-button (click)="allCatagoryCoupons(object.value)"
+      class="showAllCats"><u>{{object.key.name}}</u></button>
+    <br><br>
+    <span title="{{coupons.description}}" *ngFor="let coupons of object.value; let i=index" style="float: left;">
+      <mat-card (click)="allCatagoryCoupons(object.value)" class="showAllThumbs">
+        <mat-card-title class="showAllThumbTitle">{{coupons.title}}</mat-card-title>
+        <img mat-card-image src="../../../assets/images/{{coupons.image}}" height="100%" width="100%">
+      </mat-card>
+    </span>
+  </div>
+</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="showOneCategory == true">
+  <div *ngFor="let coupon of oneCategory" class="showCategory">
+    <mat-card class="example-card">
+      <mat-card-header style="max-height: 50px;">
+        <mat-card-title>{{coupon.title}}</mat-card-title>
+        <mat-card-subtitle>{{coupon.catagory}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="../../../assets/images/{{coupon.image}}" class="showCatImage">
+      <mat-card-content style="float: left;">
+        <div style="overflow: auto;">
+          <p style="float: left;">
+            {{coupon.description}} <br>
+            price: {{coupon.price}} <br>
+            valid until: {{coupon.endDate | date:'MMMM/yy'}}
+          </p>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="purchaseCoupon(coupon)">purchase coupon</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<span *ngIf="showMyCoupons == true" class="myCoupons">
+  <div *ngFor="let coupon of customerCoupons" class="myCouponsThumbs">
+    <mat-card class="example-card">
+      <mat-card-header style="max-height: 50px;">
+        <mat-card-title>{{coupon.title}}</mat-card-title>
+        <mat-card-subtitle>{{coupon.catagory}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="../../../assets/images/{{coupon.image}}" style="max-height: 200px; max-width: 175px;">
+      <mat-card-content style="float: left;">
+        <div style="overflow: auto;">
+          <p>
+            {{coupon.description}} <br>
+            price: {{coupon.price}} <br>
+            valid until: {{coupon.endDate | date:'MMMM/yy'}}
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<span *ngIf="filterByCatagory == true" class="catFilter">
+
+  <div *ngFor="let coupon of customerCategoryCoupons" class="catFilterThumbs">
+    <mat-card class="example-card">
+      <mat-card-header style="max-height: 50px;">
+        <mat-card-title>{{coupon.title}}</mat-card-title>
+        <mat-card-subtitle>{{coupon.catagory}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="../../../assets/images/{{coupon.image}}" style="max-height: 200px; max-width: 175px;">
+      <mat-card-content style="float: left;">
+        <div style="overflow: auto;">
+          <p>
+            {{coupon.description}} <br>
+            price: {{coupon.price}} <br>
+            valid until: {{coupon.endDate | date:'MMMM/yy'}}
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</span>
+
+<span *ngIf="filterByPrice == true" class="catFilter">
+
+  <div *ngFor="let coupon of customerCategoryCoupons" class="catFilterThumbs">
+    <mat-card class="example-card">
+      <mat-card-header style="max-height: 50px;">
+        <mat-card-title>{{coupon.title}}</mat-card-title>
+        <mat-card-subtitle>{{coupon.catagory}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="../../../assets/images/{{coupon.image}}" style="max-height: 200px; max-width: 175px;">
+      <mat-card-content style="float: left;">
+        <div style="overflow: auto;">
+          <p>
+            {{coupon.description}} <br>
+            price: {{coupon.price}} <br>
+            valid until: {{coupon.endDate | date:'MMMM/yy'}}
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</span>

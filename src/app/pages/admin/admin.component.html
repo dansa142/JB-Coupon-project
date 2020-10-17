@@ -1,0 +1,15 @@
+<h1>welcome admin</h1>
+<mat-form-field appearance="fill" class="selector">
+  <mat-label>what are we doing</mat-label>
+  <mat-select [(value)]="selected">
+    <mat-option></mat-option>
+    <mat-option value="add company" [routerLink]="['/addCompany']">add company</mat-option>
+    <mat-option value="get one company" [routerLink]="['/getOneCompany']">get one company</mat-option>
+    <mat-option value="get all companies" [routerLink]="['/getAllCompanies']">get all companies</mat-option>
+    <mat-option value="add customer" [routerLink]="['/addCustomer']">add customer</mat-option>
+    <mat-option value="get one customer" [routerLink]="['/getOneCustomer']">get one customer</mat-option>
+    <mat-option value="get all customers" [routerLink]="['/getAllCustomers']">get all customers</mat-option>
+    <mat-option value="get all coupons" [routerLink]="['/getAllCoupons']">get all coupons</mat-option>
+
+  </mat-select>
+</mat-form-field>

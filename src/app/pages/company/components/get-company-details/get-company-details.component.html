@@ -1,0 +1,177 @@
+<h1>Welcome {{company.name}} </h1>
+
+<mat-form-field appearance="fill" class="selector">
+  <mat-label>what are we doing</mat-label>
+  <mat-select [(value)]="selected">
+    <mat-option value="company details">company details</mat-option>
+    <mat-option value="coupons" [routerLink]="['/coupons']">coupons</mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+
+
+
+<div *ngIf="showImage == true" class="model">
+  <button mat-button class="close" (click)="closeImage()">&times;</button>
+  <img src="../../../../../assets/images/{{image}}" class="image1101">
+</div>
+
+
+
+
+
+
+
+
+
+
+<mat-card *ngIf="showImage == false && showCoupons == false" class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{company.name}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="../../../../../assets/images/{{company.name}}.jpg" style="max-width: 400px; max-height: 300px ;">
+  <mat-card-content>
+    <mat-list-item role="listitem">ID: &nbsp;&nbsp;<strong>{{company.id}}</strong></mat-list-item><br>
+    <mat-list-item role="listitem">Name: &nbsp;&nbsp; <strong>{{company.name}}</strong></mat-list-item><br>
+    <mat-list-item role="listitem">Email: &nbsp;&nbsp; <strong>{{company.email}}</strong></mat-list-item><br>
+    <mat-list-item role="listitem">Password: &nbsp;&nbsp; <strong>{{company.password}}</strong> </mat-list-item><br>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="updateCompanyForm()">Update details</button>
+    <button mat-button (click)="openCoupons()">show company coupons</button>
+  </mat-card-actions>
+</mat-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="input" *ngIf="showUpdate == true">
+
+  <h2><u>update company</u></h2>
+
+  <mat-form-field appearance="fill" class="inInput">
+    <mat-label>Company Name: <strong>{{company.name}}</strong></mat-label>
+    <input matInput [formControl]="companyForm.get('name')">
+    <mat-error *ngIf="companyForm.get('name') .hasError('required')">
+      full name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field> <br>
+
+  <mat-form-field appearance="fill" class="inInput">
+    <mat-label>Email: <strong>{{company.email}}</strong></mat-label>
+    <input matInput [formControl]="companyForm.get('email')">
+    <mat-error *ngIf="companyForm.get('email') .hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="companyForm.get('email') .hasError('email')">
+      Not a <strong>Valid Email</strong>
+    </mat-error>
+  </mat-form-field> <br>
+
+  <mat-form-field appearance="fill" class="inInput">
+    <mat-label>Password: <strong> {{company.password}}</strong></mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="companyForm.get('password')">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="companyForm.get('password').hasError('minlength') ">
+      password must contain <strong>8 characters</strong>
+    </mat-error>
+    <mat-error *ngIf="companyForm.get('password').hasError('required')">
+      password is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-card-actions>
+    <button [disabled]="companyForm.invalid" mat-raised-button color="primary" class="updateButton"
+      (click)="update()">Update</button>
+  </mat-card-actions>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
+<div *ngIf="showCoupons == true" class="couponTableDiv">
+  <table mat-table [dataSource]="couponDataSource" class="couponTable">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> title </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> category </th>
+      <td mat-cell *matCellDef="let element"> {{element.catagory}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef> amount </th>
+      <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> price </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef> start date </th>
+      <td mat-cell *matCellDef="let element"> {{element.startDate | date:'dd-MMMM-yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="endDate">
+      <th mat-header-cell *matHeaderCellDef> end date </th>
+      <td mat-cell *matCellDef="let element"> {{element.endDate | date:'dd-MMMM-yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element"><button mat-flat-button color="primary"
+          (click)="getImage(element.image)">show image</button></td>
+    </ng-container>
+
+    <ng-container matColumnDef="commands">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="warn" class="commands" class="tableButton"
+          (click)="deleteCoup(element)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="couponDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: couponDisplayedColumns;"></tr>
+  </table>
+  <button mat-raised-button class="backButton" (click)="closeCoupons()">back</button>
+</div>

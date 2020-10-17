@@ -1,0 +1,141 @@
+.selector {
+  position: absolute;
+  width: fit-content;
+  height: auto;
+  float: left;
+  position: relative;
+  padding-left: 50px;
+}
+
+h1 {
+  text-align: left;
+  margin-left: 50px;
+}
+
+mat-option {
+  background-color: lightgray;
+}
+
+.couponTableDiv {
+  height: 65%;
+  width: 90%;
+  overflow-y: auto;
+  margin-left: 75px;
+}
+
+.couponTable {
+  width: 100%;
+  background-color: rgb(187, 187, 187);
+}
+
+td {
+  color: black;
+  width: fit-content;
+  text-align: left;
+}
+
+th {
+  background-color: black;
+  height: 1px;
+  color: white;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  background-color: black;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.model {
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  margin: 135px 150px 500px 280px;
+  top: 0;
+  width: 60%;
+  height: 50%;
+  overflow: auto;
+  background-color: rgb(78, 77, 77);
+}
+
+.image1101 {
+  margin: auto;
+  width: 85%;
+  height: 85%;
+  max-width: 700px;
+}
+
+.tableButton {
+  margin-left: 15px;
+}
+
+.addButton {
+  float: right;
+  margin-right: 200px;
+}
+
+mat-form-field {
+  float: left;
+  margin-left: 150 px;
+}
+
+.sortForm {
+  display: inline-block;
+  float: left;
+  margin-left: 50px;
+  margin-top: 25px;
+}
+
+.sortButton {
+  margin-top: 15px;
+}
+
+.backButton {
+  float: right;
+  margin-right: 180px;
+  background-color: black;
+  color: yellow;
+  margin-top: 20px;
+}
+
+.updateForm {
+  display: inline-block;
+  width: 600px;
+  float: left;
+  margin-left: 100px;
+}
+
+mat-form-field {
+  margin-left: 25px;
+  margin-right: 25px;
+  width: 250px;
+}
+
+h2 {
+  float: left;
+  margin-left: 25px;
+}
+
+.updateButtons1,
+.updateButtons2 {
+  float: right;
+  margin-right: 25px;
+  margin-top: 5px;
+}
+
+.updateButtons2 {
+  background-color: black;
+  color: yellow;
+}
+
+.addCouponDiv {
+  display: inline-block;
+  width: 600px;
+  float: left;
+  margin-left: 100px;
+}

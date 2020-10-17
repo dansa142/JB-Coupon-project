@@ -1,0 +1,59 @@
+.selector {
+  width: fit-content;
+  height: auto;
+  float: left;
+  position: relative;
+  padding-left: 50px;
+}
+mat-option {
+  background-color: lightgray;
+}
+
+.input {
+  width: 250px;
+}
+
+.container {
+  position: fixed;
+  margin-left: 10cm;
+  width: 50%;
+}
+
+h1 {
+  text-align: left;
+  margin-left: 50px;
+}
+
+.addButton {
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 17px;
+}
+
+.commands {
+  margin: 8px;
+}
+
+table {
+  width: 100%;
+}
+
+td,
+th {
+  text-align: left;
+  margin-left: 25px;
+}
+
+.chooseId {
+  float: left;
+}
+
+.tableButton {
+  width: min-content;
+  margin-left: 25px;
+}
+
+.dataTable {
+  height: 85%;
+  overflow: auto;
+}

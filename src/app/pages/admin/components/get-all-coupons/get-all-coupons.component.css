@@ -1,0 +1,77 @@
+.selector {
+  width: fit-content;
+  height: auto;
+  float: left;
+  position: relative;
+  padding-left: 50px;
+}
+mat-option {
+  background-color: lightgray;
+}
+h1 {
+  text-align: left;
+  margin-left: 50px;
+}
+
+.tableDiv {
+  height: 65%;
+  overflow: auto;
+  width: 80%;
+  margin-left: 50px;
+}
+
+.couponTable {
+  width: 100%;
+  background-color: rgb(187, 187, 187);
+  float: left;
+}
+
+td {
+  color: black;
+  width: fit-content;
+  text-align: left;
+}
+
+th {
+  background-color: black;
+  height: 1px;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(136, 136, 136);
+}
+
+button {
+  margin-left: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  background-color: black;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.model {
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  margin: 135px 150px 500px 280px;
+  top: 0;
+  width: 60%;
+  height: 50%;
+  overflow: auto;
+  background-color: rgb(78, 77, 77);
+}
+
+.image {
+  margin: auto;
+  width: 85%;
+  height: 85%;
+  max-width: 700px;
+}

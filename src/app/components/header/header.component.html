@@ -1,0 +1,21 @@
+<p>
+  <mat-toolbar color="primary">
+
+    <span [routerLink]="['/home']" class="homepage">Coupon System</span>
+
+    <div>
+      <ng-container *ngIf="secureService.isLogged; else elseTemplate">
+        <button mat-raised-button (click)="goToMyPage()" style="margin-right: 15px;" >my page</button>
+        <button mat-raised-button color="warn" (click)="logout()" [routerLink]="['/home']" style="margin-right: 15px;">Logout</button>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <button mat-raised-button [routerLink]="['/register']" style="margin-right: 15px;">
+          Sign up
+        </button>
+        <button mat-raised-button color="primary" [routerLink]="['/login']" style="margin-right: 15px;">
+          Login
+        </button>
+      </ng-template>
+    </div>
+  </mat-toolbar>
+</p>

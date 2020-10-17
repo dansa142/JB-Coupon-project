@@ -1,0 +1,355 @@
+<h1>Welcome {{company.name}} </h1>
+
+<mat-form-field appearance="fill" class="selector">
+  <mat-label>what are we doing</mat-label>
+  <mat-select [(value)]="selected">
+    <mat-option value="company details" [routerLink]="['/companyDetails']">company details</mat-option>
+    <mat-option value="coupons" [routerLink]="['/coupons']">coupons</mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+<button *ngIf="showButtons" mat-raised-button color="primary" class="addButton" (click)="goToAddCoupon()">add
+  coupon</button>
+
+
+
+
+
+
+
+
+<div *ngIf="showImage == true" class="model">
+  <button mat-button class="close" (click)="closeImage()">&times;</button>
+  <img src="../../../../../assets/images/{{image}}" class="image1101">
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="showAddCoupon" class="addCouponDiv">
+
+  <mat-form-field appearance="legacy">
+    <mat-label>Title</mat-label>
+    <input matInput placeholder="title..." [formControl]="addCouponForm.get('title')">
+    <mat-error *ngIf="addCouponForm.get('title').hasError('required')">
+      <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="addCouponForm.get('title').hasError('maxlength')">
+      maximum <strong>10 characters</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label>Category</mat-label>
+    <mat-select [formControl]="addCouponForm.get('catagory')">
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let element of catagories" [value]="element">{{element}}</mat-option>
+      <mat-error *ngIf="updateForm.get('catagory').hasError('required')">
+        <strong>required</strong>
+      </mat-error>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label>Description</mat-label>
+    <textarea matInput placeholder="up to 250 characters...."
+      [formControl]="addCouponForm.get('description')"></textarea>
+    <mat-error *ngIf="addCouponForm.get('description').hasError('required')">
+      <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="addCouponForm.get('description').hasError('maxlength')">
+      maximum <strong>250 characters</strong>
+    </mat-error>
+    <mat-error *ngIf="addCouponForm.get('description').hasError('minlength')">
+      minimum <strong>25 characters</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label>Amount: </mat-label>
+    <input matInput type="number" placeholder="please enter amount..." [formControl]="addCouponForm.get('amount')">
+    <mat-error *ngIf="addCouponForm.get('amount').hasError('required')">
+      <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label>Price:</mat-label>
+    <input matInput type="number" step="0.5" [formControl]="addCouponForm.get('price')">
+    <span matPrefix>$&nbsp;</span>
+    <span matSuffix>.00</span>
+    <mat-error *ngIf="addCouponForm.get('price').hasError('required')">
+      <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label>Start Date:</mat-label>
+    <input matInput type="date" [formControl]="addCouponForm.get('startDate')">
+    <mat-error *ngIf="addCouponForm.get('startDate').hasError('required')">
+      <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label>End date:</mat-label>
+    <input matInput type="date" [formControl]="addCouponForm.get('endDate')">
+    <mat-error *ngIf="addCouponForm.get('endDate').hasError('required')">
+      <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label>image</mat-label>
+    <input matInput placeholder="please enter image file name..." [formControl]="addCouponForm.get('image')">
+  </mat-form-field>
+
+  <button [disabled]="addCouponForm.invalid" (click)="addCoupon()" mat-raised-button color="primary"
+    class="updateButtons1">Add New Coupon</button>
+  <button mat-raised-button (click)="backFromAddCoupon()" class="updateButtons2">Back</button>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="showUpdate" class="updateForm">
+
+  <h2><strong><u>update details</u></strong></h2><br><br><br>
+
+  <mat-form-field appearance="fill">
+    <mat-label>title: <strong>{{coupon.title}}</strong></mat-label>
+    <input matInput placeholder="{{coupon.title}}" [formControl]="updateForm.get('title')">
+    <mat-error *ngIf="updateForm.get('title').hasError('required')">
+      <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="updateForm.get('title').hasError('maxlength')">
+      maximum <strong>15 characters</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>category: <strong>{{coupon.catagory}}</strong></mat-label>
+    <mat-select [formControl]="updateForm.get('catagory')">
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let element of catagories" [value]="element">{{element}}</mat-option>
+      <mat-error *ngIf="updateForm.get('catagory').hasError('required')">
+        <strong>required</strong>
+      </mat-error>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Description: <strong>{{coupon.description}}</strong></mat-label>
+    <textarea matInput placeholder="{{coupon.description}}" [formControl]="updateForm.get('description')"></textarea>
+    <mat-error *ngIf="updateForm.get('description').hasError('required')">
+      <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="updateForm.get('description').hasError('maxlength')">
+      maximum <strong>250 characters</strong>
+    </mat-error>
+    <mat-error *ngIf="updateForm.get('description').hasError('minlength')">
+      minimum <strong>25 characters</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>amount: <strong>{{coupon.amount}}</strong></mat-label>
+    <input matInput type="number" [formControl]="updateForm.get('amount')">
+    <mat-error *ngIf="updateForm.get('amount').hasError('required')">
+      <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>price: <strong>{{coupon.price}}</strong></mat-label>
+    <input matInput type="number" step="0.05" [formControl]="updateForm.get('price')">
+    <mat-error *ngIf="updateForm.get('price').hasError('required')">
+      <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>end date: <strong>{{coupon.endDate | date:'dd-MMMM-yyyy'}}</strong></mat-label>
+    <input matInput type="date" [formControl]="updateForm.get('date')">
+    <mat-error *ngIf="updateForm.get('date').hasError('required')">
+      <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>image:<strong>{{coupon.image}}</strong></mat-label>
+    <input matInput type="text" [formControl]="updateForm.get('image')">
+    <mat-error *ngIf="updateForm.get('image').hasError('required')">
+      <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+
+  <button [disabled]="updateForm.invalid" mat-raised-button color="primary" (click)="goUpdate()"
+    class="updateButtons1">update coupon</button>
+  <button mat-raised-button color="primary" (click)="backFromUpdate()" class="updateButtons2">back</button>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
+<div *ngIf="showCoupons == true" class="couponTableDiv">
+
+  <table mat-table [dataSource]="couponDataSource" class="couponTable">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> title </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> category </th>
+      <td mat-cell *matCellDef="let element"> {{element.catagory}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef> amount </th>
+      <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> price </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef> start date </th>
+      <td mat-cell *matCellDef="let element"> {{element.startDate | date:'dd-MMMM-yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="endDate">
+      <th mat-header-cell *matHeaderCellDef> end date </th>
+      <td mat-cell *matCellDef="let element"> {{element.endDate | date:'dd-MMMM-yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element"><button mat-flat-button color="primary"
+          (click)="getImage(element.image)">show image</button></td>
+    </ng-container>
+
+    <ng-container matColumnDef="commands">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="accent" (click)="getUpdate(element)">update</button>
+        <button mat-raised-button color="warn" class="commands" class="tableButton"
+          (click)="deleteCoup(element)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="couponDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: couponDisplayedColumns;"></tr>
+  </table>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="showButtons" class="sortForm">
+  <mat-form-field appearance="fill">
+    <mat-label>sort by max price</mat-label>
+    <input matInput type="number" placeholder="enter price" [formControl]="sortForm.get('price')">
+    <span matPrefix>$&nbsp;</span>
+    <span matSuffix>.00</span>
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="sortButton" (click)="sortByMaxPrice()">sort</button>
+</div>
+
+
+
+<div *ngIf="showButtons" class="sortForm">
+  <mat-form-field appearance="fill">
+    <mat-label>sort by category</mat-label>
+    <mat-select [formControl]="sortForm.get('category')">
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let element of catagories" [value]="element">{{element}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="sortButton" (click)="sortByCategory()">sort</button>
+</div>
+
+<button *ngIf="showButtons" mat-raised-button class="backButton" (click)="backToAll()">all company coupons</button>
